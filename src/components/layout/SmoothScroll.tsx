@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useEffect, useRef } from "react";
+import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from "react";
 import Lenis from "@studio-freight/lenis";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -9,6 +9,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 type ScrollContextType = {
   scrollTo: (target: string | number, options?: { immediate?: boolean }) => void;
+  scrollProgress: number;
 };
 
 const ScrollContext = createContext<ScrollContextType>({
@@ -22,6 +23,7 @@ const ScrollContext = createContext<ScrollContextType>({
     }
     window.scrollTo({ top: target, behavior: options?.immediate ? "auto" : "smooth" });
   },
+  scrollProgress: 0,
 });
 
 export const useSmoothScroll = () => useContext(ScrollContext);
@@ -32,8 +34,15 @@ export default function SmoothScroll({
   children: React.ReactNode;
 }) {
   const lenisRef = useRef<Lenis | null>(null);
+  const [scrollProgress, setScrollProgress] = useState(0);
 
-  const scrollTo = (target: string | number, options?: { immediate?: boolean }) => {
+  const updateProgress = useCallback(() => {
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    const y = window.scrollY || document.documentElement.scrollTop;
+    setScrollProgress(max > 0 ? Math.min(1, Math.max(0, y / max)) : 0);
+  }, []);
+
+  const scrollTo = useCallback((target: string | number, options?: { immediate?: boolean }) => {
     const lenis = lenisRef.current;
     if (lenis) {
       lenis.scrollTo(target, { immediate: options?.immediate });
@@ -48,7 +57,18 @@ export default function SmoothScroll({
     }
 
     window.scrollTo({ top: target, behavior: options?.immediate ? "auto" : "smooth" });
-  };
+  }, []);
+
+  useEffect(() => {
+    updateProgress();
+    window.addEventListener("scroll", updateProgress, { passive: true });
+    window.addEventListener("resize", updateProgress);
+
+    return () => {
+      window.removeEventListener("scroll", updateProgress);
+      window.removeEventListener("resize", updateProgress);
+    };
+  }, [updateProgress]);
 
   useEffect(() => {
     const prefersReduced = window.matchMedia(
@@ -68,7 +88,10 @@ export default function SmoothScroll({
     });
 
     lenisRef.current = lenis;
-    lenis.on("scroll", ScrollTrigger.update);
+    lenis.on("scroll", () => {
+      ScrollTrigger.update();
+      updateProgress();
+    });
 
     const raf = (time: number) => {
       lenis.raf(time);
@@ -82,9 +105,16 @@ export default function SmoothScroll({
       lenis.destroy();
       lenisRef.current = null;
     };
-  }, []);
+  }, [updateProgress]);
+
+  const contextValue = useMemo(
+    () => ({ scrollTo, scrollProgress }),
+    [scrollTo, scrollProgress]
+  );
 
   return (
-    <ScrollContext.Provider value={{ scrollTo }}>{children}</ScrollContext.Provider>
+    <ScrollContext.Provider value={contextValue}>
+      {children}
+    </ScrollContext.Provider>
   );
 }

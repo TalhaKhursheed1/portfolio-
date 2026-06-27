@@ -11,7 +11,6 @@ import {
   HiOutlineGlobeAlt,
 } from "react-icons/hi";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
-import { SiUpwork } from "react-icons/si";
 import { FiSend } from "react-icons/fi";
 
 export default function Contact() {
@@ -47,12 +46,6 @@ export default function Contact() {
       label: personalInfo.phone,
       sub: "Call for direct discussions",
       href: `tel:${personalInfo.phone.replace(/\s/g, "")}`,
-    },
-    {
-      icon: SiUpwork,
-      label: "Upwork Profile",
-      sub: "Hire me on Upwork",
-      href: personalInfo.upwork,
     },
     {
       icon: FaGithub,

@@ -39,7 +39,6 @@ export const personalInfo = {
   email: "talhakhursheed004@gmail.com",
   phone: "+92 315 4877918",
   location: "Gujranwala, Pakistan",
-  upwork: "https://www.upwork.com/freelancers/talhak170",
   github: "https://github.com/TalhaKhursheed1",
   linkedin: "https://www.linkedin.com/in/talha-khursheed-7a0b072a5/",
   resumeUrl: "/resume.pdf",

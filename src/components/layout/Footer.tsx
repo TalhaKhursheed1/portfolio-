@@ -3,7 +3,6 @@
 import { motion } from "framer-motion";
 import { personalInfo } from "@/data/portfolio";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
-import { SiUpwork } from "react-icons/si";
 
 export default function Footer() {
   return (
@@ -22,7 +21,6 @@ export default function Footer() {
           {[
             { icon: FaGithub, href: personalInfo.github, label: "GitHub" },
             { icon: FaLinkedin, href: personalInfo.linkedin, label: "LinkedIn" },
-            { icon: SiUpwork, href: personalInfo.upwork, label: "Upwork" },
           ].map(({ icon: Icon, href, label }) => (
             <motion.a
               key={label}
