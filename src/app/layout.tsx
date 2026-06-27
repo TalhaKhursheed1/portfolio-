@@ -7,6 +7,7 @@ import Footer from "@/components/layout/Footer";
 import ParticleBackground from "@/components/ui/ParticleBackground";
 import CursorGlow from "@/components/ui/CursorGlow";
 import ScrollProgress from "@/components/ui/ScrollProgress";
+import ScrollToTop, { InitialScrollToProjects } from "@/components/layout/ScrollControls";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -50,12 +51,14 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased`}
       >
         <SmoothScroll>
+          <InitialScrollToProjects />
           <ScrollProgress />
           <CursorGlow />
           <ParticleBackground />
           <Navbar />
           <main className="relative z-10">{children}</main>
           <Footer />
+          <ScrollToTop />
         </SmoothScroll>
       </body>
     </html>

@@ -13,7 +13,7 @@ export default function LiveAppsShowcase() {
       <motion.span
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
+        viewport={{ once: false, amount: 0.4 }}
         className="block text-xs font-mono uppercase tracking-[0.3em] text-accent mb-4"
       >
         Live on App Stores
@@ -21,7 +21,7 @@ export default function LiveAppsShowcase() {
       <motion.h2
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
+        viewport={{ once: false, amount: 0.4 }}
         className="text-3xl md:text-5xl font-bold mb-4 max-w-3xl"
       >
         Production Apps with{" "}
@@ -30,7 +30,7 @@ export default function LiveAppsShowcase() {
       <motion.p
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
+        viewport={{ once: false, amount: 0.4 }}
         className="text-muted text-lg max-w-xl mb-12"
       >
         Live React Native apps deployed on Google Play & App Store.
@@ -42,7 +42,7 @@ export default function LiveAppsShowcase() {
             key={app.id}
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false, amount: 0.4 }}
             transition={{ delay: i * 0.1 }}
             className="glass rounded-3xl overflow-hidden glow-border group hover:-translate-y-1 transition-transform duration-300"
           >

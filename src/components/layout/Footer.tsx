@@ -12,7 +12,7 @@ export default function Footer() {
         <motion.p
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
+          viewport={{ once: false, amount: 0.5 }}
           className="text-muted text-sm"
         >
           © {new Date().getFullYear()} {personalInfo.fullName}. Crafted with passion.

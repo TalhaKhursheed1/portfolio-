@@ -22,29 +22,47 @@ export default function SectionHeading({ label, title, description }: SectionHea
     const line = lineRef.current;
     if (!el) return;
 
-    const chars = el.querySelectorAll(".title-char");
-    gsap.fromTo(
-      chars,
-      { y: 60, opacity: 0, rotateX: -40 },
-      {
-        y: 0,
-        opacity: 1,
-        rotateX: 0,
-        stagger: 0.03,
-        duration: 0.8,
-        ease: "back.out(1.4)",
-        scrollTrigger: { trigger: el, start: "top 85%", toggleActions: "play none none none" },
-      }
-    );
+    const ctx = gsap.context(() => {
+      const chars = el.querySelectorAll(".title-char");
+      gsap.fromTo(
+        chars,
+        { y: 60, opacity: 0, rotateX: -40 },
+        {
+          y: 0,
+          opacity: 1,
+          rotateX: 0,
+          stagger: 0.03,
+          duration: 0.8,
+          ease: "back.out(1.4)",
+          scrollTrigger: {
+            trigger: el,
+            start: "top 85%",
+            end: "bottom 20%",
+            toggleActions: "play reverse play reverse",
+          },
+        }
+      );
 
-    if (line) {
-      gsap.fromTo(line, { scaleX: 0 }, {
-        scaleX: 1,
-        duration: 1.2,
-        ease: "power3.inOut",
-        scrollTrigger: { trigger: el, start: "top 85%", toggleActions: "play none none none" },
-      });
-    }
+      if (line) {
+        gsap.fromTo(
+          line,
+          { scaleX: 0 },
+          {
+            scaleX: 1,
+            duration: 1.2,
+            ease: "power3.inOut",
+            scrollTrigger: {
+              trigger: el,
+              start: "top 85%",
+              end: "bottom 20%",
+              toggleActions: "play reverse play reverse",
+            },
+          }
+        );
+      }
+    }, ref);
+
+    return () => ctx.revert();
   }, []);
 
   return (
@@ -52,7 +70,7 @@ export default function SectionHeading({ label, title, description }: SectionHea
       <motion.span
         initial={{ opacity: 0, letterSpacing: "0.1em" }}
         whileInView={{ opacity: 1, letterSpacing: "0.3em" }}
-        viewport={{ once: true }}
+        viewport={{ once: false, amount: 0.6 }}
         transition={{ duration: 0.8 }}
         className="inline-block text-xs font-mono uppercase text-accent mb-4"
       >
@@ -80,7 +98,7 @@ export default function SectionHeading({ label, title, description }: SectionHea
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false, amount: 0.6 }}
           transition={{ duration: 0.6, delay: 0.2 }}
           className="text-muted text-lg"
         >

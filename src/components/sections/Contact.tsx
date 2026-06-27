@@ -16,7 +16,7 @@ import { FiSend } from "react-icons/fi";
 
 export default function Contact() {
   const ref = useRef<HTMLElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-80px" });
+  const isInView = useInView(ref, { once: false, margin: "-80px" });
   const [formState, setFormState] = useState({
     name: "",
     email: "",
@@ -85,7 +85,7 @@ export default function Contact() {
       <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12">
         <motion.div
           initial={{ opacity: 0, x: -40 }}
-          animate={isInView ? { opacity: 1, x: 0 } : {}}
+          animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -40 }}
           transition={{ duration: 0.7 }}
         >
           <div className="flex items-center gap-3 mb-8">
@@ -112,7 +112,7 @@ export default function Contact() {
                 target={method.href.startsWith("http") ? "_blank" : undefined}
                 rel="noopener noreferrer"
                 initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                 transition={{ delay: 0.1 * i }}
                 whileHover={{ x: 4, borderColor: "rgba(99,102,241,0.4)" }}
                 className="glass rounded-xl p-4 flex items-start gap-4 border border-transparent transition-all duration-300"
@@ -130,7 +130,7 @@ export default function Contact() {
         <motion.form
           onSubmit={handleSubmit}
           initial={{ opacity: 0, x: 40 }}
-          animate={isInView ? { opacity: 1, x: 0 } : {}}
+          animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 40 }}
           transition={{ duration: 0.7, delay: 0.2 }}
           className="glass rounded-2xl p-8 glow-border"
         >

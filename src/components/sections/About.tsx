@@ -16,7 +16,7 @@ export default function About() {
   const sectionRef = useRef<HTMLElement>(null);
   const imageWrapRef = useRef<HTMLDivElement>(null);
   const ringRef = useRef<SVGSVGElement>(null);
-  const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
+  const isInView = useInView(sectionRef, { once: false, margin: "-100px" });
 
   const x = useMotionValue(0);
   const y = useMotionValue(0);
@@ -111,24 +111,9 @@ export default function About() {
 
         <div>
           <GsapReveal delay={0.1}>
-            <p className="text-lg text-muted leading-relaxed mb-6">{about.bio}</p>
-            <p className="font-mono text-sm text-accent mb-8 animate-glow-pulse">{about.highlight}</p>
+            <p className="text-lg text-muted leading-relaxed mb-8">{about.bio}</p>
+            <p className="font-mono text-sm text-accent mb-10 animate-glow-pulse">{about.highlight}</p>
           </GsapReveal>
-
-          <div className="space-y-4 mb-10">
-            {about.experience.map((exp, i) => (
-              <GsapReveal key={exp.company} delay={0.15 + i * 0.08}>
-                <motion.div
-                  whileHover={{ x: 8, borderColor: "rgba(99,102,241,0.6)" }}
-                  className="glass rounded-xl p-4 border-l-2 border-accent/50 transition-all duration-300"
-                >
-                  <p className="font-semibold text-sm">{exp.role}</p>
-                  <p className="text-muted text-sm">{exp.company} · {exp.location}</p>
-                  <p className="text-xs text-accent-light mt-1">{exp.period}</p>
-                </motion.div>
-              </GsapReveal>
-            ))}
-          </div>
 
           <div className="grid grid-cols-3 gap-4">
             {stats.map((stat, i) => (

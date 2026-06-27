@@ -55,29 +55,9 @@ export const heroRoles = [
 ];
 
 export const about = {
-  bio: "Motivated and detail-oriented React Native Developer with a Bachelor's degree in Software Engineering and hands-on experience designing, developing, and deploying mobile applications. Skilled in building user-centric apps, integrating third-party APIs, and delivering high-quality solutions within deadlines. Currently at Silicon Nexus, I lead frontend development for cross-platform apps — working in Agile sprints with direct client communication.",
+  bio: "Motivated and detail-oriented React Native Developer with a Bachelor's degree in Software Engineering and hands-on experience designing, developing, and deploying mobile applications. Skilled in building user-centric apps, integrating third-party APIs, and delivering high-quality solutions within deadlines.",
   highlight:
     "Deployed on both Android & iOS — production-ready mobile experiences.",
-  experience: [
-    {
-      role: "React Native Developer",
-      company: "Silicon Nexus",
-      location: "Lahore, Pakistan",
-      period: "Apr 2025 – Present",
-    },
-    {
-      role: "React Native Developer",
-      company: "Hixol",
-      location: "Gujranwala, Pakistan",
-      period: "Dec 2023 – Dec 2024",
-    },
-    {
-      role: "React Native Developer Intern",
-      company: "IT Oasis",
-      location: "Gujranwala, Pakistan",
-      period: "2023",
-    },
-  ],
 };
 
 export const stats: Stat[] = [

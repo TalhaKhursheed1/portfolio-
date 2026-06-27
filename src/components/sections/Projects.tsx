@@ -9,7 +9,7 @@ import { FiExternalLink } from "react-icons/fi";
 
 export default function Projects() {
   const ref = useRef<HTMLElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-80px" });
+  const isInView = useInView(ref, { once: false, margin: "-80px" });
 
   return (
     <section id="projects" ref={ref} className="section-padding relative">
@@ -24,7 +24,7 @@ export default function Projects() {
           <motion.article
             key={project.id}
             initial={{ opacity: 0, y: 40 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
             transition={{ duration: 0.5, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
             className="group relative glass rounded-2xl overflow-hidden glass-hover flex flex-col h-full hover:-translate-y-1 transition-transform duration-300"
           >
@@ -55,7 +55,7 @@ export default function Projects() {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
+        viewport={{ once: false, amount: 0.4 }}
         className="max-w-7xl mx-auto mt-16 text-center"
       >
         <p className="text-muted mb-4">More mobile projects and code samples on GitHub.</p>

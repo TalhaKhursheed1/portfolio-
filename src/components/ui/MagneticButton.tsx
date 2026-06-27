@@ -37,10 +37,9 @@ export default function MagneticButton({
   const reset = () => setPosition({ x: 0, y: 0 });
 
   const variants = {
-    primary:
-      "bg-accent text-white hover:shadow-[0_0_40px_rgba(99,102,241,0.4)] border-transparent",
+    primary: "btn-shiny text-white border-transparent hover:shadow-[0_0_50px_rgba(99,102,241,0.55)]",
     secondary:
-      "glass text-white hover:border-accent/40 border-white/10",
+      "btn-shiny-outline text-white backdrop-blur-xl hover:border-accent/60 hover:shadow-[0_0_40px_rgba(99,102,241,0.35)]",
     ghost: "text-muted hover:text-white border-transparent bg-transparent",
   };
 
@@ -51,22 +50,26 @@ export default function MagneticButton({
     animate: { x: position.x * 0.2, y: position.y * 0.2 },
     transition: { type: "spring" as const, stiffness: 150, damping: 15, mass: 0.1 },
     whileTap: { scale: 0.95 },
+    whileHover: { scale: 1.03 },
     className: cn(
-      "relative inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full font-medium text-sm border transition-all duration-300 overflow-hidden group",
+      "relative inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full font-medium text-sm border transition-shadow duration-300 overflow-hidden group",
       variants[variant],
       className
     ),
   };
 
   const shimmer = (
-    <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+    <>
+      <span className="absolute inset-0 btn-shine-sweep bg-gradient-to-r from-transparent via-white/35 to-transparent pointer-events-none" />
+      <span className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+    </>
   );
 
   if (href) {
     return (
       <motion.a href={href} {...motionProps}>
         {shimmer}
-        <span className="relative z-10">{children}</span>
+        <span className="relative z-10 flex items-center gap-2">{children}</span>
       </motion.a>
     );
   }
@@ -74,7 +77,7 @@ export default function MagneticButton({
   return (
     <motion.button type={type} onClick={onClick} {...motionProps}>
       {shimmer}
-      <span className="relative z-10">{children}</span>
+      <span className="relative z-10 flex items-center gap-2">{children}</span>
     </motion.button>
   );
 }

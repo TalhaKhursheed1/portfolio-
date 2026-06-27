@@ -8,7 +8,7 @@ import TiltCard from "@/components/ui/TiltCard";
 
 export default function Skills() {
   const ref = useRef<HTMLElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-80px" });
+  const isInView = useInView(ref, { once: false, margin: "-80px" });
 
   return (
     <section id="skills" ref={ref} className="section-padding relative overflow-hidden">
@@ -23,7 +23,7 @@ export default function Skills() {
           <motion.div
             key={category.title}
             initial={{ opacity: 0, y: 60, rotateX: 20 }}
-            animate={isInView ? { opacity: 1, y: 0, rotateX: 0 } : {}}
+            animate={isInView ? { opacity: 1, y: 0, rotateX: 0 } : { opacity: 0, y: 60, rotateX: 20 }}
             transition={{ duration: 0.7, delay: catIndex * 0.12, ease: [0.22, 1, 0.36, 1] }}
           >
             <TiltCard intensity={8}>
@@ -44,7 +44,7 @@ export default function Skills() {
                     <motion.span
                       key={skill}
                       initial={{ opacity: 0, scale: 0, y: 20 }}
-                      animate={isInView ? { opacity: 1, scale: 1, y: 0 } : {}}
+                      animate={isInView ? { opacity: 1, scale: 1, y: 0 } : { opacity: 0, scale: 0, y: 20 }}
                       transition={{
                         delay: catIndex * 0.12 + skillIndex * 0.04,
                         type: "spring",
@@ -70,7 +70,7 @@ export default function Skills() {
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
+        viewport={{ once: false, amount: 0.3 }}
         className="max-w-7xl mx-auto mt-16 overflow-hidden py-4"
       >
         <div className="flex animate-marquee whitespace-nowrap gap-12">

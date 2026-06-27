@@ -24,7 +24,7 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
 
 export default function Services() {
   const ref = useRef<HTMLElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-80px" });
+  const isInView = useInView(ref, { once: false, margin: "-80px" });
 
   return (
     <section id="services" ref={ref} className="section-padding relative">
@@ -41,7 +41,7 @@ export default function Services() {
             <motion.div
               key={service.title}
               initial={{ opacity: 0, y: 40, rotateX: 15 }}
-              animate={isInView ? { opacity: 1, y: 0, rotateX: 0 } : {}}
+              animate={isInView ? { opacity: 1, y: 0, rotateX: 0 } : { opacity: 0, y: 40, rotateX: 15 }}
               transition={{
                 duration: 0.6,
                 delay: i * 0.1,

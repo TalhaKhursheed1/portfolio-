@@ -1,11 +1,30 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { createContext, useContext, useEffect, useRef } from "react";
 import Lenis from "@studio-freight/lenis";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
+
+type ScrollContextType = {
+  scrollTo: (target: string | number, options?: { immediate?: boolean }) => void;
+};
+
+const ScrollContext = createContext<ScrollContextType>({
+  scrollTo: (target, options) => {
+    if (typeof target === "string") {
+      const el = document.querySelector(target);
+      if (el) {
+        el.scrollIntoView({ behavior: options?.immediate ? "auto" : "smooth" });
+      }
+      return;
+    }
+    window.scrollTo({ top: target, behavior: options?.immediate ? "auto" : "smooth" });
+  },
+});
+
+export const useSmoothScroll = () => useContext(ScrollContext);
 
 export default function SmoothScroll({
   children,
@@ -13,6 +32,23 @@ export default function SmoothScroll({
   children: React.ReactNode;
 }) {
   const lenisRef = useRef<Lenis | null>(null);
+
+  const scrollTo = (target: string | number, options?: { immediate?: boolean }) => {
+    const lenis = lenisRef.current;
+    if (lenis) {
+      lenis.scrollTo(target, { immediate: options?.immediate });
+      return;
+    }
+
+    if (typeof target === "string") {
+      document.querySelector(target)?.scrollIntoView({
+        behavior: options?.immediate ? "auto" : "smooth",
+      });
+      return;
+    }
+
+    window.scrollTo({ top: target, behavior: options?.immediate ? "auto" : "smooth" });
+  };
 
   useEffect(() => {
     const prefersReduced = window.matchMedia(
@@ -48,5 +84,7 @@ export default function SmoothScroll({
     };
   }, []);
 
-  return <>{children}</>;
+  return (
+    <ScrollContext.Provider value={{ scrollTo }}>{children}</ScrollContext.Provider>
+  );
 }
