@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500">
+  <defs>
+    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#9333ea"/>
+      <stop offset="100%" stop-color="#6366f1"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="500" fill="url(#g)"/>
+  <rect x="160" y="90" width="480" height="300" rx="20" fill="#ffffff10" stroke="#ffffff25"/>
+  <rect x="200" y="130" width="280" height="36" rx="18" fill="#ffffff20"/>
+  <rect x="200" y="190" width="200" height="36" rx="18" fill="#ffffff15"/>
+  <rect x="200" y="250" width="320" height="36" rx="18" fill="#ffffff15"/>
+  <rect x="200" y="310" width="160" height="36" rx="18" fill="#ffffff25"/>
+  <text x="400" y="460" fill="#ffffffcc" font-family="system-ui,sans-serif" font-size="24" font-weight="700" text-anchor="middle">Real-Time Chat</text>
+</svg>

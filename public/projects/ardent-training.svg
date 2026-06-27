@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500">
+  <defs>
+    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0891b2"/>
+      <stop offset="100%" stop-color="#2563eb"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="500" fill="url(#g)"/>
+  <path d="M400 90 L520 380 L280 380 Z" fill="#ffffff18" stroke="#ffffff35" stroke-width="2"/>
+  <line x1="400" y1="90" x2="400" y2="380" stroke="#ffffff25" stroke-width="2"/>
+  <circle cx="400" cy="200" r="40" fill="#ffffff20"/>
+  <text x="400" y="460" fill="#ffffffcc" font-family="system-ui,sans-serif" font-size="24" font-weight="700" text-anchor="middle">Ardent Training</text>
+</svg>

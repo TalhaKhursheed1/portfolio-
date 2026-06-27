@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500">
+  <defs>
+    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#059669"/>
+      <stop offset="100%" stop-color="#0d9488"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="500" fill="url(#g)"/>
+  <rect x="120" y="80" width="560" height="340" rx="24" fill="#ffffff15" stroke="#ffffff30"/>
+  <rect x="160" y="130" width="220" height="140" rx="12" fill="#ffffff20"/>
+  <rect x="420" y="130" width="220" height="60" rx="8" fill="#ffffff15"/>
+  <rect x="420" y="210" width="220" height="60" rx="8" fill="#ffffff15"/>
+  <text x="400" y="460" fill="#ffffffcc" font-family="system-ui,sans-serif" font-size="28" font-weight="700" text-anchor="middle">KasaStay</text>
+</svg>

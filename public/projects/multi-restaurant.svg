@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500">
+  <defs>
+    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ea580c"/>
+      <stop offset="100%" stop-color="#d97706"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="500" fill="url(#g)"/>
+  <rect x="100" y="120" width="280" height="260" rx="16" fill="#ffffff15" stroke="#ffffff30"/>
+  <rect x="420" y="120" width="280" height="260" rx="16" fill="#ffffff15" stroke="#ffffff30"/>
+  <circle cx="240" cy="200" r="50" fill="#ffffff20"/>
+  <rect x="480" y="160" width="160" height="20" rx="4" fill="#ffffff25"/>
+  <rect x="480" y="200" width="160" height="20" rx="4" fill="#ffffff20"/>
+  <rect x="480" y="240" width="160" height="20" rx="4" fill="#ffffff20"/>
+  <text x="400" y="460" fill="#ffffffcc" font-family="system-ui,sans-serif" font-size="24" font-weight="700" text-anchor="middle">MultiRestaurant</text>
+</svg>

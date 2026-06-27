@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500">
+  <defs>
+    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#db2777"/>
+      <stop offset="100%" stop-color="#e11d48"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="500" fill="url(#g)"/>
+  <circle cx="320" cy="220" r="60" fill="#ffffff20"/>
+  <circle cx="480" cy="220" r="60" fill="#ffffff20"/>
+  <path d="M320 280 Q400 360 480 280" fill="none" stroke="#ffffff40" stroke-width="3"/>
+  <text x="400" y="460" fill="#ffffffcc" font-family="system-ui,sans-serif" font-size="28" font-weight="700" text-anchor="middle">Rishta Auntie</text>
+</svg>
