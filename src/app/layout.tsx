@@ -37,6 +37,13 @@ export const metadata: Metadata = {
     description:
       "Cross-platform mobile apps with React Native, Expo, Firebase & Stripe.",
     type: "website",
+    siteName: "Talha Khursheed Portfolio",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Talha Khursheed | React Native Developer",
+    description:
+      "Cross-platform mobile apps with React Native, Expo, Firebase & Stripe.",
   },
 };
 

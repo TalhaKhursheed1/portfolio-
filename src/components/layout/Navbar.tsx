@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { personalInfo, navLinks } from "@/data/portfolio";
+import Logo from "@/components/ui/Logo";
 import { cn } from "@/lib/utils";
 import { HiMenuAlt3, HiX } from "react-icons/hi";
 
@@ -32,12 +33,12 @@ export default function Navbar() {
         <nav className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
           <motion.a
             href="#"
-            className="text-xl font-bold tracking-tight"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            className="inline-flex"
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
+            aria-label={`${personalInfo.fullName} — home`}
           >
-            <span className="text-gradient">{personalInfo.name.split(" ")[0]}</span>
-            <span className="text-accent">.</span>
+            <Logo />
           </motion.a>
 
           <ul className="hidden md:flex items-center gap-8">
