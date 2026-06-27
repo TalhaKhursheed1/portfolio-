@@ -2,11 +2,12 @@
 
 import { useRef, useEffect } from "react";
 import Image from "next/image";
-import { motion, useInView, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import CountUp from "react-countup";
 import { about, stats, personalInfo } from "@/data/portfolio";
+import { useRevealInView } from "@/hooks/useRevealInView";
 import SectionHeading from "@/components/ui/SectionHeading";
 import GsapReveal from "@/components/ui/GsapReveal";
 
@@ -16,7 +17,7 @@ export default function About() {
   const sectionRef = useRef<HTMLElement>(null);
   const imageWrapRef = useRef<HTMLDivElement>(null);
   const ringRef = useRef<SVGSVGElement>(null);
-  const isInView = useInView(sectionRef, { once: false, margin: "-100px" });
+  const isInView = useRevealInView(sectionRef, { margin: "-100px" });
 
   const x = useMotionValue(0);
   const y = useMotionValue(0);

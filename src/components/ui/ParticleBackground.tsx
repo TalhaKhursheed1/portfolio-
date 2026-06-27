@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useEffect } from "react";
+import { isMobileExperience, prefersReducedMotion } from "@/lib/device";
 
 export default function ParticleBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -9,10 +10,7 @@ export default function ParticleBackground() {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    const prefersReduced = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
-    if (prefersReduced) return;
+    if (prefersReducedMotion() || isMobileExperience()) return;
 
     const ctx = canvas.getContext("2d");
     if (!ctx) return;

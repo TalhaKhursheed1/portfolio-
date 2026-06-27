@@ -1,14 +1,15 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import { skillCategories } from "@/data/portfolio";
+import { useRevealInView } from "@/hooks/useRevealInView";
 import SectionHeading from "@/components/ui/SectionHeading";
 import TiltCard from "@/components/ui/TiltCard";
 
 export default function Skills() {
   const ref = useRef<HTMLElement>(null);
-  const isInView = useInView(ref, { once: false, margin: "-80px" });
+  const isInView = useRevealInView(ref);
 
   return (
     <section id="skills" ref={ref} className="section-padding relative overflow-hidden">

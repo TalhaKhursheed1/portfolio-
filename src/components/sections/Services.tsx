@@ -1,8 +1,9 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import { services } from "@/data/portfolio";
+import { useRevealInView } from "@/hooks/useRevealInView";
 import SectionHeading from "@/components/ui/SectionHeading";
 import {
   HiOutlineDeviceMobile,
@@ -24,7 +25,7 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
 
 export default function Services() {
   const ref = useRef<HTMLElement>(null);
-  const isInView = useInView(ref, { once: false, margin: "-80px" });
+  const isInView = useRevealInView(ref);
 
   return (
     <section id="services" ref={ref} className="section-padding relative">

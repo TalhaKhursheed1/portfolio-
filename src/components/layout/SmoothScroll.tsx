@@ -35,11 +35,18 @@ export default function SmoothScroll({
 }) {
   const lenisRef = useRef<Lenis | null>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
+  const progressTicking = useRef(false);
 
   const updateProgress = useCallback(() => {
-    const max = document.documentElement.scrollHeight - window.innerHeight;
-    const y = window.scrollY || document.documentElement.scrollTop;
-    setScrollProgress(max > 0 ? Math.min(1, Math.max(0, y / max)) : 0);
+    if (progressTicking.current) return;
+    progressTicking.current = true;
+
+    requestAnimationFrame(() => {
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      const y = window.scrollY || document.documentElement.scrollTop;
+      setScrollProgress(max > 0 ? Math.min(1, Math.max(0, y / max)) : 0);
+      progressTicking.current = false;
+    });
   }, []);
 
   const scrollTo = useCallback((target: string | number, options?: { immediate?: boolean }) => {

@@ -1,15 +1,16 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import { projects, personalInfo } from "@/data/portfolio";
+import { useRevealInView } from "@/hooks/useRevealInView";
 import SectionHeading from "@/components/ui/SectionHeading";
 import ProjectCardImage from "@/components/ui/ProjectCardImage";
 import { FiExternalLink } from "react-icons/fi";
 
 export default function Projects() {
   const ref = useRef<HTMLElement>(null);
-  const isInView = useInView(ref, { once: false, margin: "-80px" });
+  const isInView = useRevealInView(ref);
 
   return (
     <section id="projects" ref={ref} className="section-padding relative">

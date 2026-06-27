@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { HiArrowUp } from "react-icons/hi";
 import { useSmoothScroll } from "@/components/layout/SmoothScroll";
+import { isMobileExperience, prefersReducedMotion } from "@/lib/device";
 
 let initialProjectsScrollDone = false;
 
@@ -14,13 +15,25 @@ export function InitialScrollToProjects() {
     if (initialProjectsScrollDone) return;
     if (window.location.hash) return;
 
+    // Auto-scroll causes lag and stuck scrolling on mobile — skip entirely
+    if (isMobileExperience() || prefersReducedMotion()) return;
+
     initialProjectsScrollDone = true;
 
-    const timer = window.setTimeout(() => {
-      scrollTo("#projects", { immediate: false });
-    }, 600);
+    const jumpToProjects = () => {
+      scrollTo("#projects", { immediate: true });
+    };
 
-    return () => window.clearTimeout(timer);
+    // Wait for layout/fonts, then jump instantly (no smooth scroll delay)
+    const run = () => requestAnimationFrame(jumpToProjects);
+
+    if (document.readyState === "complete") {
+      run();
+      return;
+    }
+
+    window.addEventListener("load", run, { once: true });
+    return () => window.removeEventListener("load", run);
   }, [scrollTo]);
 
   return null;
@@ -57,7 +70,7 @@ export default function ScrollToTop() {
         >
           <motion.button
             type="button"
-            onClick={() => scrollTo(0)}
+            onClick={() => scrollTo(0, { immediate: isMobileExperience() })}
             aria-label="Scroll to top"
             whileHover={{ scale: 1.06, y: -3 }}
             whileTap={{ scale: 0.94 }}

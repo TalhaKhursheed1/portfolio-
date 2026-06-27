@@ -1,8 +1,9 @@
 "use client";
 
 import { useState, useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import { personalInfo } from "@/data/portfolio";
+import { useRevealInView } from "@/hooks/useRevealInView";
 import SectionHeading from "@/components/ui/SectionHeading";
 import MagneticButton from "@/components/ui/MagneticButton";
 import {
@@ -15,7 +16,7 @@ import { FiSend } from "react-icons/fi";
 
 export default function Contact() {
   const ref = useRef<HTMLElement>(null);
-  const isInView = useInView(ref, { once: false, margin: "-80px" });
+  const isInView = useRevealInView(ref);
   const [formState, setFormState] = useState({
     name: "",
     email: "",
