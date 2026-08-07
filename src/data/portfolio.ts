@@ -8,6 +8,7 @@ export interface Project {
   status?: string;
   androidUrl?: string;
   iosUrl?: string;
+  storeLabel?: string;
   downloads?: string;
   gradient: string;
   accentColor?: string;
@@ -62,7 +63,7 @@ export const about = {
 export const stats: Stat[] = [
   { value: 10, suffix: "+", label: "Projects Delivered" },
   { value: 3, suffix: "+", label: "Years Experience" },
-  { value: 10, suffix: "K+", label: "App Downloads" },
+  { value: 15, suffix: "K+", label: "App Downloads" },
 ];
 
 export const projects: Project[] = [
@@ -84,7 +85,7 @@ export const projects: Project[] = [
     androidUrl:
       "https://play.google.com/store/apps/details?id=com.kasastay&hl=en",
     iosUrl: "https://apps.apple.com/us/app/kasastay/id6748743521",
-    downloads: "10K+",
+    downloads: "15K+",
     accentColor: "#10b981",
     gradient: "from-emerald-600/20 to-teal-600/20",
   },
@@ -114,7 +115,7 @@ export const projects: Project[] = [
     id: "multi-restaurant",
     title: "MultiRestaurant App",
     description:
-      "Multi-tenant restaurant platform with a customer mobile app for browsing menus, placing orders, and tracking deliveries — plus a dedicated tablet app for kitchen staff with real-time order queues, prep status, and thermal printer integration. Currently in active development, launching soon.",
+      "Multi-tenant restaurant platform with a live kitchen tablet app for real-time order queues, prep status, and thermal printer integration. The customer mobile app for browsing menus, placing orders, and tracking deliveries is currently in development.",
     tags: [
       "React Native",
       "Expo",
@@ -125,8 +126,11 @@ export const projects: Project[] = [
       "Thermal Printer",
     ],
     featured: true,
-    status: "Coming Soon",
+    status: "Mobile Coming Soon",
     image: "/projects/multi-restaurant.png",
+    androidUrl:
+      "https://play.google.com/store/apps/details?id=com.multiresturant&hl=en",
+    storeLabel: "Kitchen Tablet",
     accentColor: "#f97316",
     gradient: "from-orange-600/20 to-amber-600/20",
   },
@@ -293,4 +297,4 @@ export const marqueeTech = [
   "Android",
 ];
 
-export const liveApps = projects.filter((p) => p.androidUrl && p.iosUrl);
+export const liveApps = projects.filter((p) => p.androidUrl || p.iosUrl);

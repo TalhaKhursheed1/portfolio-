@@ -88,7 +88,6 @@ export default function About() {
                 alt={personalInfo.fullName}
                 fill
                 className="object-cover object-top"
-                priority
                 sizes="(max-width: 768px) 288px, 320px"
               />
               <motion.div

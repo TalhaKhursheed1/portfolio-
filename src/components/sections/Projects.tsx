@@ -29,7 +29,7 @@ export default function Projects() {
             transition={{ duration: 0.5, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
             className="group relative glass rounded-2xl overflow-hidden glass-hover flex flex-col h-full hover:-translate-y-1 transition-transform duration-300"
           >
-            <ProjectCardImage project={project} priority={i < 3} />
+            <ProjectCardImage project={project} />
 
             <div className="p-6 flex flex-col flex-1">
               <h3 className="text-xl font-semibold mb-2 group-hover:text-accent-light transition-colors">

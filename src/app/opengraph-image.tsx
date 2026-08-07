@@ -193,7 +193,7 @@ export default async function Image() {
 
         {/* Tech pills */}
         <div style={{ display: "flex", gap: 12, zIndex: 1, flexWrap: "wrap" }}>
-          {["React Native", "Expo", "Firebase", "iOS", "Android", "10K+ Downloads"].map(
+          {["React Native", "Expo", "Firebase", "iOS", "Android", "15K+ Downloads"].map(
             (tag) => (
               <div
                 key={tag}

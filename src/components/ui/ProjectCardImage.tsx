@@ -13,6 +13,7 @@ interface ProjectCardImageProps {
 export default function ProjectCardImage({ project, priority }: ProjectCardImageProps) {
   const isLive = !!(project.androidUrl || project.iosUrl);
   const isComingSoon = project.status === "Coming Soon";
+  const isMobileComingSoon = project.status === "Mobile Coming Soon";
 
   return (
     <div className={cn("h-56 relative overflow-hidden shrink-0 bg-surface", project.gradient)}>
@@ -22,20 +23,20 @@ export default function ProjectCardImage({ project, priority }: ProjectCardImage
         fill
         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         priority={priority}
-        unoptimized
+        quality={72}
         className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
       />
       <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent" />
 
       <div className="absolute top-4 left-4 flex flex-col gap-2 z-10">
-        {isComingSoon && (
+        {(isComingSoon || isMobileComingSoon) && (
           <span className="px-3 py-1 text-xs font-mono uppercase tracking-wider bg-orange-500/25 text-orange-300 rounded-full border border-orange-500/40 flex items-center gap-1.5 w-fit backdrop-blur-sm">
-            <FaRocket className="text-[10px]" /> Coming Soon
+            <FaRocket className="text-[10px]" /> {project.status}
           </span>
         )}
         {isLive && !isComingSoon && (
           <span className="px-3 py-1 text-xs font-mono uppercase tracking-wider bg-accent/30 text-accent-light rounded-full border border-accent/40 w-fit backdrop-blur-sm">
-            Live on Stores
+            {project.storeLabel ? `${project.storeLabel} Live` : "Live on Stores"}
           </span>
         )}
         {project.featured && !isLive && !isComingSoon && (
@@ -46,8 +47,8 @@ export default function ProjectCardImage({ project, priority }: ProjectCardImage
       </div>
 
       {project.downloads && (
-        <span className="absolute top-4 right-4 px-3 py-1 text-xs font-mono bg-emerald-500/25 text-emerald-300 rounded-full border border-emerald-500/40 flex items-center gap-1.5 z-10 backdrop-blur-sm">
-          <FaDownload className="text-[10px]" /> {project.downloads}
+        <span className="absolute bottom-4 right-4 px-4 py-2 text-sm font-bold bg-emerald-500 text-white rounded-full border border-emerald-300/60 shadow-[0_0_24px_rgba(16,185,129,0.55)] flex items-center gap-2 z-20">
+          <FaDownload className="text-xs" /> {project.downloads} Downloads
         </span>
       )}
 
@@ -61,7 +62,7 @@ export default function ProjectCardImage({ project, priority }: ProjectCardImage
                 rel="noopener noreferrer"
                 className="px-4 py-2 bg-background/90 rounded-full text-sm flex items-center gap-2 hover:text-accent-light hover:scale-105 transition-all border border-white/10"
               >
-                <FaGooglePlay /> Play Store
+                <FaGooglePlay /> {project.storeLabel || "Play Store"}
               </a>
             )}
             {project.iosUrl && (
